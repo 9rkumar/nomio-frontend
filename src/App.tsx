@@ -4,6 +4,8 @@ import Footer from './components/Footer';
 import CartFloat from './components/CartFloat';
 import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
+import Menu from './pages/Menu';
+import Cart from './pages/Cart';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
@@ -17,8 +19,8 @@ function App() {
         <div className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/menu" element={<div>Menu Page Placeholder</div>} />
-            <Route path="/cart" element={<div>Cart Page Placeholder</div>} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<div>Orders Page Placeholder</div>} />
             <Route path="/profile" element={<div>Profile Page Placeholder</div>} />
             <Route path="/about" element={<div>About Page Placeholder</div>} />
