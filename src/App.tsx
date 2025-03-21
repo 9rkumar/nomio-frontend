@@ -7,7 +7,9 @@ import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
+import Profile from './pages/Profile';
 import Orders from './pages/Orders';
+import Dashboard from './pages/Dashboard';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
@@ -24,12 +26,12 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/profile" element={<div>Profile Page Placeholder</div>} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/about" element={<div>About Page Placeholder</div>} />
             <Route path="/contact" element={<div>Contact Page Placeholder</div>} />
             <Route path="/subscribe" element={<div>Subscribe Page Placeholder</div>} />
             <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<div>Dashboard Page Placeholder</div>} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
         <Footer />

@@ -1,14 +1,22 @@
 import React from 'react';
 import Card from '../components/common/Card';
+import Button from '../components/common/Button';
+import { useNavigate } from 'react-router-dom';
 import { useOrders } from '../hooks/useOrders';
 import { useAuth } from '../hooks/useAuth';
 
 const Orders: React.FC = () => {
   const { user } = useAuth();
   const { orderHistory, refetchOrders } = useOrders();
+  const navigate = useNavigate();
 
   if (!user) {
-    return <div className="orders"><p>Please log in to view your orders.</p></div>;
+    return (
+      <div className="orders">
+        <p>Please log in to view your orders.</p>
+        <Button onClick={() => navigate('/login')}>Go to Login</Button>
+      </div>
+    );
   }
 
   return (
