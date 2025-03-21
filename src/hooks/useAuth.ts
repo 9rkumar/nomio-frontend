@@ -40,7 +40,6 @@ export const useAuth = () => {
     setIsSubscribed(false);
     localStorage.removeItem('user');
     localStorage.removeItem('isSubscribed');
-    localStorage.removeItem('token'); // Clear token as in nomio-website
   };
 
   const toggleSubscription = () => {

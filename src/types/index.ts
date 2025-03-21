@@ -10,6 +10,7 @@ export interface CartItem {
     email: string;
     address: string;
     role: 'nomi' | 'nomia' | 'rasik' | 'rasika' | 'superadmin';
+    isSubscribed?: boolean;
   }
   
   export interface Order {

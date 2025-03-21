@@ -38,8 +38,8 @@ const Dashboard: React.FC = () => {
       <Card className="dashboard-summary">
         <h2>Summary</h2>
         <p>Total Orders: {orderHistory.length}</p>
-        <p>Pending Orders: {orderHistory.filter((o) => o.status === 'Pending').length}</p>
-        <p>Delivered Orders: {orderHistory.filter((o) => o.status === 'Delivered').length}</p>
+        <p>Pending Orders: {orderHistory.filter((o) => o.status === 'created').length}</p>
+        <p>Delivered Orders: {orderHistory.filter((o) => o.status === 'delivered').length}</p>
       </Card>
       <h2 className="animate-slide-up">All Orders</h2>
       {orderHistory.length === 0 ? (
@@ -49,27 +49,27 @@ const Dashboard: React.FC = () => {
           {orderHistory.map((order) => (
             <Card key={order.orderId} className="order-item">
               <h3>Order #{order.orderId}</h3>
-              <p><strong>User:</strong> {order.userId}</p>
+              <p><strong>User:</strong> {order.userId} ({order.userType})</p>
               <p><strong>Status:</strong> {order.status}</p>
               <p><strong>Total:</strong> ₹{order.total}</p>
               <p><strong>Address:</strong> {order.address}</p>
               <p><strong>Date:</strong> {new Date(order.createdAt).toLocaleString()}</p>
               <div className="order-items">
                 <h4>Items:</h4>
-                {order.items.map((item, index) => (
+                {order.items.map((item: any, index: number) => (
                   <p key={index}>{item.name} - ₹{item.price} x {item.quantity}</p>
                 ))}
               </div>
               <div className="status-controls">
                 <Button
-                  onClick={() => handleUpdateStatus(order.orderId, 'Pending')}
-                  disabled={order.status === 'Pending'}
+                  onClick={() => handleUpdateStatus(order.orderId, 'created')}
+                  disabled={order.status === 'created'}
                 >
-                  Set Pending
+                  Set Created
                 </Button>
                 <Button
-                  onClick={() => handleUpdateStatus(order.orderId, 'Delivered')}
-                  disabled={order.status === 'Delivered'}
+                  onClick={() => handleUpdateStatus(order.orderId, 'delivered')}
+                  disabled={order.status === 'delivered'}
                 >
                   Set Delivered
                 </Button>
@@ -78,7 +78,7 @@ const Dashboard: React.FC = () => {
           ))}
         </div>
       )}
-      <Button onClick={() => refetchOrders()}>Refresh Orders</Button>
+      <Button onClick={refetchOrders}>Refresh Orders</Button>
       {showPopup && (
         <Popup
           title={showPopup.type === 'success' ? 'Success' : 'Error'}

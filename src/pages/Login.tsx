@@ -6,7 +6,7 @@ import Popup from '../components/common/Popup';
 import { useAuth } from '../hooks/useAuth';
 
 const Login: React.FC = () => {
-  const { login, register } = useAuth();
+  const { login, register, user } = useAuth();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
@@ -18,6 +18,12 @@ const Login: React.FC = () => {
   });
   const [showPopup, setShowPopup] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
+  React.useEffect(() => {
+    if (user) {
+      navigate(user.role === 'superadmin' ? '/dashboard' : '/', { replace: true });
+    }
+  }, [user, navigate]);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const { email, password, username, address, role } = formData;
@@ -26,15 +32,15 @@ const Login: React.FC = () => {
       const result = await login(email, password);
       if (result.success) {
         setShowPopup({ type: 'success', message: 'Logged in successfully!' });
-        setTimeout(() => navigate('/'), 1500);
+        navigate(user?.role === 'superadmin' ? '/dashboard' : '/', { replace: true });
       } else {
         setShowPopup({ type: 'error', message: result.message });
       }
     } else {
       const result = await register({ email, password, username, address, role });
       if (result.success) {
-        setShowPopup({ type: 'success', message: 'Registered successfully! Logging in...' });
-        setTimeout(() => navigate('/'), 1500);
+        setShowPopup({ type: 'success', message: 'Registered successfully!' });
+        navigate(role === 'superadmin' ? '/dashboard' : '/', { replace: true });
       } else {
         setShowPopup({ type: 'error', message: result.message });
       }

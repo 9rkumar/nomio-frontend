@@ -19,16 +19,22 @@ const Cart: React.FC = () => {
       return;
     }
 
+    const userType = user.role === 'superadmin' ? 'superadmin' : (['rasik', 'rasika'].includes(user.role) ? 'chef' : 'customer');
+    const orderPayload = {
+      userId: user.id,
+      userType,
+      items: cart,
+      total,
+      address: user.address,
+    };
+
     try {
-      await api.createOrder({
-        items: cart,
-        total,
-        address: user.address,
-      });
+      await api.createOrder(orderPayload);
       clearCart();
       setShowPopup({ type: 'success', message: 'Order placed successfully!' });
     } catch (err) {
-      setShowPopup({ type: 'error', message: 'Failed to place order. Try again.' });
+      console.error('Order creation error:', err.response?.data);
+      setShowPopup({ type: 'error', message: err.response?.data?.msg || 'Failed to place order. Try again.' });
     }
   };
 

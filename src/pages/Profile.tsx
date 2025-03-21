@@ -4,6 +4,7 @@ import Card from '../components/common/Card';
 import Button from '../components/common/Button';
 import Popup from '../components/common/Popup';
 import { useAuth } from '../hooks/useAuth';
+import { api } from '../services/api';
 
 const Profile: React.FC = () => {
   const { user, logout, toggleSubscription } = useAuth();
@@ -28,8 +29,8 @@ const Profile: React.FC = () => {
   const handleUpdate = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      // Placeholder for update API call (not implemented in api.ts yet)
-      // await api.updateUser(user.id, formData);
+      const response = await api.updateUser(user.id, formData);
+      setUser(response.data); // Update user in state
       setShowPopup({ type: 'success', message: 'Profile updated successfully!' });
       setEditMode(false);
     } catch (err) {

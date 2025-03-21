@@ -1,25 +1,28 @@
 import { useState, useEffect } from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { Order } from '../types';
-import { api } from '../services/api';
 import { useAuth } from './useAuth';
+import { api } from '../services/api';
 
 export const useOrders = () => {
   const { user } = useAuth();
-  const [orderHistory, setOrderHistory] = useState<Order[]>(JSON.parse(localStorage.getItem('orderHistory') || '[]'));
+  const [orderHistory, setOrderHistory] = useState<any[]>([]);
 
-  const { data, refetch } = useQuery({
-    queryKey: ['orders', user?.id],
-    queryFn: () => (user ? api.getOrders(user.id).then((res) => res.data) : Promise.resolve([])),
-    enabled: !!user,
-  });
+  const fetchOrders = async () => {
+    if (!user) return;
+    try {
+      const response = user.role === 'superadmin' ? await api.getAllOrders() : await api.getOrders(user.id);
+      setOrderHistory(response.data);
+    } catch (err) {
+      console.error('Failed to fetch orders:', err.response?.data);
+    }
+  };
 
   useEffect(() => {
-    if (data) {
-      setOrderHistory(data);
-      localStorage.setItem('orderHistory', JSON.stringify(data));
-    }
-  }, [data]);
+    fetchOrders();
+  }, [user]);
 
-  return { orderHistory, refetchOrders: refetch };
+  const refetchOrders = () => {
+    fetchOrders();
+  };
+
+  return { orderHistory, refetchOrders };
 };
