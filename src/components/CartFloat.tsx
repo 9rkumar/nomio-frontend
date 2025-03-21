@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../hooks/useCart';
 
 const CartFloat: React.FC = () => {
+  const { cartCount } = useCart();
   const navigate = useNavigate();
-  const cart = JSON.parse(localStorage.getItem('cart') || '[]');
-  const cartCount = cart.reduce((sum: number, item: any) => sum + item.quantity, 0);
 
   return (
     <div className="cart-float">

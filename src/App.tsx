@@ -2,15 +2,20 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import CartFloat from './components/CartFloat';
+import Sidebar from './components/Sidebar';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
+  const { user } = useAuth();
+
   return (
     <BrowserRouter>
       <div className="app">
         <Nav />
+        <Sidebar />
         <div className="main-content">
           <Routes>
-            <Route path="/" element={<div>Home Page Placeholder</div>} />
+            <Route path="/" element={<div>Home Page Placeholder {user ? `- Welcome, ${user.username}` : ''}</div>} />
             <Route path="/menu" element={<div>Menu Page Placeholder</div>} />
             <Route path="/cart" element={<div>Cart Page Placeholder</div>} />
             <Route path="/orders" element={<div>Orders Page Placeholder</div>} />

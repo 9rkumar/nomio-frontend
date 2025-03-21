@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import { useCart } from '../hooks/useCart';
 
 const Nav: React.FC = () => {
+  const { user, logout } = useAuth();
+  const { cartCount } = useCart();
   const [isOpen, setIsOpen] = useState(false);
-  // Placeholder for user state (will integrate with useAuth later)
-  const user = JSON.parse(localStorage.getItem('user') || 'null');
+  const navigate = useNavigate();
 
   const navItems = user
     ? [
         { to: '/', label: 'Home' },
         { to: '/menu', label: 'Menu' },
-        { to: '/cart', label: 'Cart' },
+        { to: '/cart', label: `Cart (${cartCount})` },
         ...(user.role === 'superadmin'
           ? [{ to: '/dashboard', label: 'Dashboard' }]
           : [{ to: '/orders', label: 'Orders' }]),
@@ -18,12 +21,12 @@ const Nav: React.FC = () => {
         { to: '/about', label: 'About' },
         { to: '/contact', label: 'Contact' },
         { to: '/subscribe', label: 'Subscribe' },
-        { to: '#', label: 'Logout', onClick: () => localStorage.removeItem('user') },
+        { to: '#', label: 'Logout', onClick: () => { logout(); navigate('/'); } },
       ]
     : [
         { to: '/', label: 'Home' },
         { to: '/menu', label: 'Menu' },
-        { to: '/cart', label: 'Cart' },
+        { to: '/cart', label: `Cart (${cartCount})` },
         { to: '/about', label: 'About' },
         { to: '/contact', label: 'Contact' },
         { to: '/subscribe', label: 'Subscribe' },
