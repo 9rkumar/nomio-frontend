@@ -6,6 +6,8 @@ import Sidebar from './components/Sidebar';
 import Home from './pages/Home';
 import Menu from './pages/Menu';
 import Cart from './pages/Cart';
+import Login from './pages/Login';
+import Orders from './pages/Orders';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
@@ -21,12 +23,12 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
             <Route path="/cart" element={<Cart />} />
-            <Route path="/orders" element={<div>Orders Page Placeholder</div>} />
+            <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<div>Profile Page Placeholder</div>} />
             <Route path="/about" element={<div>About Page Placeholder</div>} />
             <Route path="/contact" element={<div>Contact Page Placeholder</div>} />
             <Route path="/subscribe" element={<div>Subscribe Page Placeholder</div>} />
-            <Route path="/login" element={<div>Login Page Placeholder</div>} />
+            <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<div>Dashboard Page Placeholder</div>} />
           </Routes>
         </div>
