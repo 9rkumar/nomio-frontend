@@ -14,7 +14,11 @@ const Sidebar: React.FC = () => {
     <div className="sidebar" aria-label="Quick links">
       <h2>Quick Links</h2>
       {links.map((link) => (
-        <NavLink key={link.to} to={link.to} className={({ isActive }) => (isActive ? 'active' : '')}>
+        <NavLink
+          key={link.to}
+          to={link.to}
+          className={({ isActive }) => (isActive ? 'active' : '')}
+        >
           {link.label}
         </NavLink>
       ))}

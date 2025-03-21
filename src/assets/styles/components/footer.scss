@@ -1,0 +1,14 @@
+footer {
+    background: #555;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+  
+    a {
+      color: #ff9f1c;
+    }
+  
+    @media (max-width: 768px) {
+      padding: 0.5rem;
+    }
+  }

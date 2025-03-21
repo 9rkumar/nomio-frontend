@@ -1,0 +1,160 @@
+.home {
+    .banner {
+      background: linear-gradient(135deg, #ff6f61, #f4a261);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+  
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+      }
+  
+      p {
+        font-size: 1.2rem;
+      }
+    }
+  
+    .promo {
+      background: #ff9f1c;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+  
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  
+    .categories {
+      margin-bottom: 2rem;
+  
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #ff6f61;
+      }
+  
+      .category-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+  
+        .card {
+          text-align: center;
+          padding: 1.5rem;
+          font-size: 1.1rem;
+        }
+      }
+    }
+  
+    .featured-items {
+      margin-bottom: 2rem;
+  
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        color: #ff6f61;
+      }
+  
+      .items-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+  
+        .item-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+  
+          img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+          }
+  
+          h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+          }
+  
+          p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+  
+            &:last-of-type {
+              font-weight: bold;
+              color: #333;
+            }
+          }
+        }
+      }
+    }
+  
+    .why-nomio {
+      text-align: center;
+      padding: 2rem;
+      background: #f9f9f9;
+      border-radius: 10px;
+  
+      h2 {
+        font-size: 1.8rem;
+        color: #ff6f61;
+        margin-bottom: 0.5rem;
+      }
+  
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  
+    .animate-fade-in {
+      animation: fadeIn 1s ease-in;
+    }
+  
+    .animate-slide-up {
+      animation: slideUp 1s ease-in;
+    }
+  
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  
+    @media (max-width: 768px) {
+      .banner {
+        padding: 1rem;
+  
+        h1 {
+          font-size: 1.8rem;
+        }
+  
+        p {
+          font-size: 1rem;
+        }
+      }
+  
+      .promo {
+        padding: 0.5rem;
+      }
+  
+      .categories, .featured-items {
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  }
