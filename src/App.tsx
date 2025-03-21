@@ -10,6 +10,9 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Orders from './pages/Orders';
 import Dashboard from './pages/Dashboard';
+import About from './pages/About';
+import Contact from './pages/Contact';
+import Subscribe from './pages/Subscribe';
 import { useAuth } from './hooks/useAuth';
 
 function App() {
@@ -27,9 +30,9 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/orders" element={<Orders />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/about" element={<div>About Page Placeholder</div>} />
-            <Route path="/contact" element={<div>Contact Page Placeholder</div>} />
-            <Route path="/subscribe" element={<div>Subscribe Page Placeholder</div>} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/subscribe" element={<Subscribe />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>

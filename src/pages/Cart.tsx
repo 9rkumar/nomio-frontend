@@ -21,7 +21,6 @@ const Cart: React.FC = () => {
 
     try {
       await api.createOrder({
-        userId: user.id,
         items: cart,
         total,
         address: user.address,
